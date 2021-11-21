@@ -51,12 +51,10 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
         return state
     }
 
-    private var moves = OrderedMoveList()
-
     fun evaluate(whitePlayer: Boolean): Int {
         ourColor = if (whitePlayer) Color.WHITE else Color.BLACK
 
-        var score = when (state) {
+        val score = when (state) {
             GameState.HASWON -> if (whitePlayer) Int.MAX_VALUE else Int.MIN_VALUE
             GameState.HASLOST -> if (whitePlayer) Int.MIN_VALUE else Int.MAX_VALUE
             GameState.PLAYING -> if (whitePlayer) PawnEvaluator.evaluate(board, AttackInfo())
@@ -78,10 +76,6 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
         return state
     }
 
-    fun gameStateEnd(condition: Int, whitePlayer: Boolean): Boolean {
-        ourColor = if (whitePlayer) Color.WHITE else Color.BLACK
-        return gameStateEnd(condition, ourColor)
-    }
 
     fun gameStateEnd(condition: Int, ourColor: Int): Boolean {
         when (condition) {
@@ -99,7 +93,7 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
             }
         }
         if (state != GameState.PLAYING) {
-            println("end position reached: ${GameState.toString(state)} ${Color.fullColor(board.colorToMove)}")
+ //           println("end position reached: ${GameState.toString(state)} ${Color.fullColor(board.colorToMove)}")
             //   assert(false)
             return true
         }

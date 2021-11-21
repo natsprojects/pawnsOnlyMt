@@ -27,17 +27,15 @@ class PawnChess {
         val playerWhite = Player(readLine()!!, position, Color.WHITE, PlayerType.HUMAN)
         println("Second Player's name: \n ")
         val playerBlack = Player(readLine()!!, position, Color.BLACK, PlayerType.COMPUTER)
-        val leaveMessage: String
+
         position.board.printBoard()
         while (true) {
 
             if (!playerWhite.getMove()) {
-                leaveMessage = playerWhite.leaveMessage
                 break
             }
 
             if (!playerBlack.getMove()) {
-                leaveMessage = playerBlack.leaveMessage
                 break
             }
         }

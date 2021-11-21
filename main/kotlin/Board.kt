@@ -1,4 +1,5 @@
 package pawnChess
+
 class Board {
 
     var gameBitboard = 0L
@@ -11,25 +12,14 @@ class Board {
     var pieceBitboard = Array(Color.SIZE) { LongArray(Piece.SIZE) }
     var epSquare = Square.NONE
     var errorMessage = ""
-    var legalMoves = mutableListOf<Int>()
     var debug = false
-    var maxValuation = Int.MIN_VALUE
-    var minValuation = Int.MAX_VALUE
- //   var basicEvalInfo = historyBasicEvalInfo[basicInfoIndex]
- //   val evalInfo = EvalInfo()
-    /**
-     * Update evaluation information
-     */
-    inline fun updateEval(attackInfo: AttackInfo) {
-        evalInfo.update(this, attackInfo)
-    }
- //   var basicEvalInfo = historyBasicEvalInfo[basicInfoIndex]
+
+
     val evalInfo = EvalInfo()
 
     fun getMessage(): String {
         return errorMessage
     }
-
 
     /**
      * Reset the board information.
@@ -42,7 +32,7 @@ class Board {
         colorToMove = Color.WHITE
         nextColorToMove = Color.BLACK
         pieceBitboard = Array(Color.SIZE) { LongArray(Piece.SIZE) }
-        legalMoves = mutableListOf<Int>()
+
     }
 
     fun printBoard() {
@@ -139,32 +129,18 @@ class Board {
         nextColorToMove = ourColor
         moveNumber++
         moveType = MoveType.TYPE_NONE
- //       basicEvalInfo = nextBasicEvalInfo()
- //       basicEvalInfo.update(this)
+
     }
 
-    private fun updateBitboardInfo() {
-        gameBitboard = pieceBitboard[Color.WHITE][Piece.NONE] or pieceBitboard[Color.BLACK][Piece.NONE]
-        emptyBitboard = gameBitboard.inv()
-    }
+/*
 
     fun undoMove(move: Int) {
         nextColorToMove = colorToMove
         colorToMove = Color.invertColor(colorToMove)
-
         val ourColor = colorToMove
         val theirColor = nextColorToMove
-
-       /* val fromSquare = Move.getFromSquare(move)
-        val toSquare = Move.getToSquare(move)
-        var movedPieceType = pieceTypeBoard[toSquare]
-        val moveType = Move.getMoveType(move)
-        moveNumber--
-
-         updateBitboardInfo()
-*/
- //       basicEvalInfo = previousBasicEvalInfo()
     }
+*/
 
     private fun clearEpSquare() {
         epSquare = Square.NONE

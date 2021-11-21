@@ -43,8 +43,8 @@ class Player(
 
     fun computerMove() {
 
-        val search = Search(position.board, prune = 11)
-        val slist = search.scoredMoves(4)
+        val search = Search(position.board,4)
+        val slist = search.scoredMoves()
         if (MoveGen.isLegalMove(position.board, slist[0].first)) {
             position.board.doMove(slist[0].first)
             slist.forEach { println("move: ${Move.toString(it.first)} ${it.second}") }
