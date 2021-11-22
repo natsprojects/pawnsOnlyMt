@@ -11,7 +11,7 @@ class PawnChess {
     fun doGameLoop() {
         println("Pawns-Only Chess")
         println("First Player's name: \n ")
-        val playerWhite = Player(readLine()!!, position, Color.WHITE, PlayerType.COMPUTER)
+        val playerWhite = Player(readLine()!!, position, Color.WHITE, PlayerType.HUMAN)
         println("Second Player's name: \n ")
         val playerBlack = Player(readLine()!!, position, Color.BLACK, PlayerType.COMPUTER)
         position.board.printBoard()

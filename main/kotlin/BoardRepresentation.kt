@@ -1,5 +1,5 @@
 package pawnChess
-
+// https://github.com/ratosh/pirarucu.git
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -9,10 +9,12 @@ const val RIGHT = 1
 const val LEFT = -RIGHT
 const val RANK_TWO_MASK = 0xFFL shl ONESQUARE
 const val RANK_SEVEN_MASK = 0xFFL shl ONESQUARE * 6
+
 /**
  * Bitboard singleton class.
  * Use a long to represent a chess board.
  */
+
 object Bitboard {
 
     val A1 = getBitboard(Square.A1)
