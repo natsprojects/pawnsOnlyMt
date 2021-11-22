@@ -19,8 +19,9 @@ class Search(board: Board, val depth: Int) {
             var alpha = Int.MIN_VALUE
             var beta = Int.MAX_VALUE
             var nMoves = ml.size shl 2
-            nMoves  = depth  * 100 / nMoves
+            nMoves  = depth  * 80 / nMoves
             nMoves = max(nMoves,depth)
+            nMoves = min(nMoves, 20)
             for (move in ml) {
                 if (MoveGen.isLegalMove(board, move.first)) {
                     board.doMove(move.first)

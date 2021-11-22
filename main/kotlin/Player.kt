@@ -38,7 +38,6 @@ class Player(
                 }
             } else valid = false
         } while (!valid)
-
     }
 
     fun computerMove() {
@@ -47,7 +46,7 @@ class Player(
         val slist = search.scoredMoves()
         if (MoveGen.isLegalMove(position.board, slist[0].first)) {
             position.board.doMove(slist[0].first)
-            slist.forEach { println("move: ${Move.toString(it.first)} ${it.second}") }
+ //           slist.forEach { println("move: ${Move.toString(it.first)} ${it.second}") }
         } else assert(false)
 
     }
@@ -58,7 +57,11 @@ class Player(
             PlayerType.COMPUTER -> computerMove()
         }
         position.board.printBoard()
-        if (position.gameStateEnd(GameState.GAMEDRAWN, position.board.colorToMove)) {
+        if (position.gameStateEnd(GameState.GAMEDRAWN, position.board.colorToMove)  ||
+           /* position.gameStateEnd(GameState.HASLOST, position.board.colorToMove) ||*/
+            position.gameStateEnd(GameState.HASWON, position.board.colorToMove)
+
+        ) {
             position.board.printBoard()
             return false
         }
