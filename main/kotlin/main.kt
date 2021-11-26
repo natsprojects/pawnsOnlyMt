@@ -4,6 +4,7 @@ fun main() {
     val game = PawnChess()
    game.doGameLoop()
 }
+
 class PawnChess {
 
     var board = BoardFactory.getBoard("8/pppppppp/8/8/8/8/PPPPPPPP/8 w - -")

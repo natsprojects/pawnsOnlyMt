@@ -44,8 +44,10 @@ class Player(
 
         val search = Search(position.board,4)
         val slist = search.scoredMoves()
+
         if (MoveGen.isLegalMove(position.board, slist[0].first)) {
             position.board.doMove(slist[0].first)
+
  //           slist.forEach { println("move: ${Move.toString(it.first)} ${it.second}") }
         } else assert(false)
 
