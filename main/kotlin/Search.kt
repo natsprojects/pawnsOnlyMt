@@ -1,6 +1,9 @@
 package pawnChess
 
 import kotlin.math.*
+const val WHITE_WINS = Int.MAX_VALUE
+const val BLACK_WINS = Int.MIN_VALUE
+const val DRAW = 0
 class Search(board: Board, val depth: Int) {
 
     var position = Position(board)

@@ -25,7 +25,7 @@ class BoardTest {
         }
         board.printBoard()
         // then we get the correct error message
-        assertEquals("no white pawn at b3",board.errorMessage)
+        assertEquals("no White pawn at b3",board.errorMessage)
 
         // and its still whites turn
         assertEquals(board.colorToMove, Color.WHITE)

@@ -84,22 +84,7 @@ object MoveGen {
         }
     }
 
-    fun legalMovesScoredOld( board: Board, ourColor: Int = board.colorToMove): OrderedMoveList {
 
-        var legalMovesOurs = generateLegalMoves(board, ourColor)
-        val orderedMoves = OrderedMoveList()
-        var newBoard = Board()
-        var eval = 0
-        for (move in legalMovesOurs) {
-                newBoard.copy(board)
-                newBoard.doMove(move)
-                eval = PawnEvaluator.evaluate(newBoard, AttackInfo())
-                if (ourColor == Color.BLACK) eval *= -1
-                orderedMoves.addMove(move = move, eval)
-            }
-        legalMovesOurs = listOf()
-        return orderedMoves
-        }
 
     fun legalMovesScored( board: Board, ourColor: Int = board.colorToMove):  List<Pair<Int,Int>>  {
 

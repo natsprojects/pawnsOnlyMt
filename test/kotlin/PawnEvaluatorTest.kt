@@ -50,13 +50,5 @@ internal class PawnEvaluatorTest {
         assertTrue(eval < 0)
     }
 
-    @Test
-    fun testPawnCaptureAdvantage() {
-        val eval = evaluate("8/8/8/8/2P5/8/7p" +
-                "/8 b - -")
-
-        println("eval $eval")
-        assertTrue(eval < 0)
-    }
 
 }
