@@ -1,6 +1,5 @@
 package pawnChess
 
-
 class Position(var board: Board, var ourColor: Int = board.colorToMove) {
     var state = GameState.PLAYING
     var gameOver = false
