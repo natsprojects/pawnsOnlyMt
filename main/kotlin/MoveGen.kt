@@ -7,7 +7,9 @@ object MoveGen {
     }
 
     fun generateLegalMove(move: Int, board: Board): Int {
+
         with(board) {
+
             val toSquare = Move.getToSquare(move)
             val fromSquare = Move.getFromSquare(move)
             val toBitboard = Bitboard.getBitboard(toSquare)

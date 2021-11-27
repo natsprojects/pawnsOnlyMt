@@ -3,12 +3,6 @@ package pawnChess
 import kotlin.math.abs
 import kotlin.math.max
 
-const val ONESQUARE = 8
-const val TWOSQUARE = 16
-const val RIGHT = 1
-const val LEFT = -RIGHT
-const val RANK_TWO_MASK = 0xFFL shl ONESQUARE
-const val RANK_SEVEN_MASK = 0xFFL shl ONESQUARE * 6
 
 /**
  * Bitboard singleton class.
@@ -577,7 +571,7 @@ object Move {
 }
 
 object GameState {
-
+    var leaveMessage = ""
     const val PLAYING = 0
     const val HASWON = 1
     const val GAMEDRAWN = 2
@@ -586,9 +580,14 @@ object GameState {
     const val HASLOST = 5
     private val STATE = arrayOf("playing", "won", "drawn","resigned","error","lost")
 
-    fun toString(state: Int) : String{
-        return STATE[state]
+    fun getLeaveMessage(state: Int, color: Int): String {
+        val LEAVEMESSAGE = arrayOf("Bye!", "${Color.fullColor(color)} Wins!\nBye!", "Stalemate!\nBye!","resigned",
+            "Invalid Move","${Color.fullColor(Color.invertColor(color))} Wins!\nBye!")
+       return LEAVEMESSAGE[state]
     }
+
+    fun toString(state: Int) = STATE[state]
+
 }
 
 object Rank {

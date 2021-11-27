@@ -5,7 +5,7 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
     var state = GameState.PLAYING
     var gameOver = false
 
-    var leaveMessage = ""
+    var leaveMessage = GameState.getLeaveMessage(GameState.PLAYING, ourColor)
 
     private fun hasWon(ourColor: Int): Int {
 
@@ -31,9 +31,12 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
                 }
             }
         }
-        leaveMessage = if (state == GameState.HASWON) "${Color.fullColor(ourColor)} Wins!\nBye!" else "Bye!"
+        when(state) {
+
+        }
+
         if (state == GameState.HASWON || state == GameState.HASLOST) {
-   //         println(" ${Color.fullColor(ourColor)}: ${GameState.toString(state)} ... in hasWon")
+
             gameOver = true
 
         }
@@ -45,8 +48,7 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
         val legalMoves = MoveGen.generateLegalMoves(board, ourColor = ourColor)
         if (legalMoves.isEmpty()) {
             state = GameState.GAMEDRAWN
-            leaveMessage = "Stalemate!\nBye!"
- //           println(leaveMessage)
+
         }
         return state
     }
@@ -55,14 +57,14 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
         ourColor = if (whitePlayer) Color.WHITE else Color.BLACK
 
         val score = when (state) {
-            GameState.HASWON -> if (whitePlayer) Int.MAX_VALUE else Int.MIN_VALUE
-            GameState.HASLOST -> if (whitePlayer) Int.MIN_VALUE else Int.MAX_VALUE
+            GameState.HASWON -> if (whitePlayer) WHITE_WINS else BLACK_WINS
+            GameState.HASLOST -> if (whitePlayer) BLACK_WINS else WHITE_WINS
             GameState.PLAYING -> if (whitePlayer) PawnEvaluator.evaluate(board, AttackInfo())
             else -PawnEvaluator.evaluate(board, AttackInfo())
-            GameState.GAMEDRAWN -> 0
+            GameState.GAMEDRAWN -> DRAW
             else -> {
                 assert(false)
-                0
+                DRAW
             }
         }
         state = GameState.PLAYING
@@ -89,14 +91,15 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
             }
             else -> {
                 state = GameState.ERROR
-                leaveMessage = "Bye!"
+
             }
         }
         if (state != GameState.PLAYING) {
- //           println("end position reached: ${GameState.toString(state)} ${Color.fullColor(board.colorToMove)}")
-            //   assert(false)
+
+            leaveMessage = GameState.getLeaveMessage(state, ourColor)
             return true
         }
+        leaveMessage = GameState.getLeaveMessage(state, ourColor)
         return false
     }
 

@@ -24,7 +24,7 @@ internal class PositionTest {
 
         // then we check that black wins with correct leaveMessage
 
-        assertEquals(true, position.gameStateEnd(GameState.HASWON, board.colorToMove))
+        assertEquals(true, position.gameStateEnd(GameState.PLAYING, board.colorToMove))
         assertEquals("Black Wins!\nBye!", position.leaveMessage)
 
     }
