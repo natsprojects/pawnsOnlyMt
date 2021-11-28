@@ -2,7 +2,6 @@ package pawnChess
 
 class Position(var board: Board, var ourColor: Int = board.colorToMove) {
     var state = GameState.PLAYING
-    var gameOver = false
 
     var leaveMessage = GameState.getLeaveMessage(GameState.PLAYING, ourColor)
 
@@ -30,24 +29,15 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
                 }
             }
         }
-        when(state) {
 
-        }
-
-        if (state == GameState.HASWON || state == GameState.HASLOST) {
-
-            gameOver = true
-
-        }
         return state
     }
 
     private fun hasDrawn(ourColor: Int): Int {
-        //     if (state == GameState.GAMEDRAWN) return GameState.GAMEDRAWN
+
         val legalMoves = MoveGen.generateLegalMoves(board, ourColor = ourColor)
         if (legalMoves.isEmpty()) {
             state = GameState.GAMEDRAWN
-
         }
         return state
     }
@@ -77,7 +67,6 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
         return state
     }
 
-
     fun gameStateEnd(condition: Int, ourColor: Int): Boolean {
         when (condition) {
             GameState.HASWON -> state = hasWon(ourColor)
@@ -90,17 +79,13 @@ class Position(var board: Board, var ourColor: Int = board.colorToMove) {
             }
             else -> {
                 state = GameState.ERROR
-
             }
         }
-        if (state != GameState.PLAYING) {
-
-            leaveMessage = GameState.getLeaveMessage(state, ourColor)
-            return true
-        }
         leaveMessage = GameState.getLeaveMessage(state, ourColor)
-        return false
+        return state != GameState.PLAYING
     }
 
+    fun saveToFile() {
 
+    }
 }
