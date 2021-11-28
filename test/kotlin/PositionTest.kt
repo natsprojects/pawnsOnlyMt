@@ -54,23 +54,4 @@ internal class PositionTest {
         assertEquals("Stalemate!\nBye!", position.leaveMessage)
     }
 
-    @Test
-    fun `create a unique file using a name followed by a run number`() {
-        // given a board, starting position
-        var board = BoardFactory.getBoard()
-        val position = Position(board)
-
-        // when we create a file with chosen name
-        val fileName = Position.createRunName("run, 0")
-        //then filename is as expected
-        assertEquals("run_0",fileName)
-
-        // then the file should be created as a buffered reader
-        var bw = Position.createFile(
-            
-        )
-
-        assertEquals(br of BufferedWriter(Writer))
-
-    }
 }
